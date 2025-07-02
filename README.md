@@ -1,57 +1,97 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Fs-anpaq)
-# DeepForest
 
-Realiza la configuración del ambiente de conda siguiendo las instrucciones en:  
-🔗 https://deepforest.readthedocs.io/en/v1.5.0/getting_started/install.html
+#  DeepForest: Análisis de Imágenes Aéreas
 
-Usa un modelo preentrenado para contar árboles siguiendo el tutorial:  
-🌲 https://deepforest.readthedocs.io/en/v1.5.0/getting_started/intro_tutorials/03_use_pretrained_model.html
-
-# Recursos
-
-- Documentación general de DeepForest: https://deepforest.readthedocs.io/en/v1.5.0/
-- Repositorio oficial: https://github.com/weecology/DeepForest
+Este proyecto utiliza el modelo preentrenado **DeepForest** para detectar árboles en imágenes aéreas RGB y realizar un análisis visual y cuantitativo con resultados en gráficos y un archivo `.csv`.
 
 ---
 
-# Tarea
+##  Configuración del ambiente
 
-## Objetivo
-Aplicar un modelo preentrenado de DeepForest para detectar árboles en imágenes aéreas y realizar un análisis cuantitativo y visual a partir de los resultados obtenidos.
+Realiza la configuración del ambiente de `conda` siguiendo las instrucciones oficiales:  
+🔗 https://deepforest.readthedocs.io/en/v1.5.0/getting_started/install.html
 
-## Actividades
+---
+
+##  Recursos
+
+- Documentación general de DeepForest: https://deepforest.readthedocs.io/en/v1.5.0/
+- Repositorio oficial: https://github.com/weecology/DeepForest
+- Tutorial usado:  
+   https://deepforest.readthedocs.io/en/v1.5.0/getting_started/intro_tutorials/03_use_pretrained_model.html
+
+---
+
+##  Objetivo
+
+Aplicar el modelo preentrenado de **DeepForest** para detectar árboles en una imagen aérea personalizada y realizar un análisis completo, incluyendo:
+
+- Visualización con cajas y etiquetas.
+- Cálculo de áreas.
+- Análisis de vegetación (índices ExG y VARI).
+- Estadísticas RGB e interpretación visual.
+- Exportación de resultados.
+
+---
+
+##  Imagen usada
+
+La imagen usada en el proyecto es:
+mi_imagen/imagen_taller7.jpg
+
+Esta puede ser reemplazada por cualquier imagen RGB de alta resolución.
+
+---
+
+##  Actividades
 
 1. **Carga de imagen y predicción**
-   - Carga una imagen RGB de alta resolución.
-   - Aplica el modelo preentrenado para detectar árboles.
+   - Se carga la imagen personalizada y se aplica el modelo `weecology/deepforest-tree` para detectar árboles.
 
 2. **Visualización con identificadores**
-   - Muestra la imagen con las cajas detectadas y un identificador único para cada árbol.
+   - Se muestra la imagen con *bounding boxes* y un identificador numérico por árbol detectado.
 
-3. **Cálculo de áreas y generación de un dataframe**
-   - Calcula el área (en píxeles) de cada caja detectada.
-   - Crea un dataframe con columnas como: `id_arbol`, `xmin`, `ymin`, `xmax`, `ymax`, `area_px`.
+3. **Cálculo de áreas y dataframe**
+   - Se calcula el área en píxeles de cada árbol.
+   - Se genera un dataframe con: `id_arbol`, `xmin`, `ymin`, `xmax`, `ymax`, `area_px`.
 
-4. **Cálculo de índice de vegetación**
-   - Calcula índices como:
-     - ExG = `2*G - R - B`
-     - VARI = `(G - R) / (G + R - B + ε)`
-   - Calcula la media del índice dentro de cada caja y agrega columnas al dataframe: `ExG_mean`, `VARI_mean`.
+4. **Índices de vegetación**
+   - Se calculan:
+     - **ExG** = `2*G - R - B`
+     - **VARI** = `(G - R) / (G + R - B + ε)`
+   - Se obtiene el valor medio de cada índice por árbol detectado.
 
 5. **Histogramas RGB**
-   - Genera histogramas para los canales R, G y B, comparando regiones detectadas como árboles vs. regiones no detectadas.
+   - Se grafican histogramas de intensidad en los canales R, G y B comparando árboles vs no árboles.
 
 6. **Diagramas de dispersión RGB**
-   - Calcula el promedio R, G, B de cada caja detectada y de muestras fuera de las cajas.
-   - Grafica combinaciones (R vs G, G vs B, R vs B) usando colores distintos para árboles y no árboles.
+   - Se grafican R vs G, G vs B y R vs B diferenciando regiones de árboles y no árboles mediante colores.
+
+7. **Exportación de datos**
+   - Toda la información procesada se guarda en un archivo `.csv` (`datos_arboles.csv`).
+
+---
+
+##  Estructura del proyecto
+
+deepforest-chachi-solve/
+├── analisis_arboles.ipynb # Cuaderno principal del proyecto
+├── datos_arboles.csv # DataFrame con resultados exportado
+├── mi_imagen/
+│ └── imagen_taller7.jpg # Imagen usada en el análisis
+├── requirements.txt # Librerías necesarias
+└── README.md # Este archivo
 
 ## Entrega esperada
+✅ analisis_arboles.ipynb: el cuaderno con todo el proceso documentado.
 
-- Un notebook (recomendado: `analisis_arboles.ipynb`) que documente el flujo completo.
-- El dataframe generado en CSV.
-- Visualizaciones correspondientes (pueden estar embebidas en el notebook).
+✅ datos_arboles.csv: archivo con resultados por árbol detectado.
 
-## **INTEGRANTES DE CHACHI SOLVE**
-- Farid Pedroza
-- Joan Rincon
-- Juan Guerra
+✅ Visualizaciones generadas: cajas, histogramas, diagramas RGB.
+
+## INTEGRANTES DE CHACHI SOLVE
+Farid Pedroza
+
+Joan Rincón
+
+Juan Guerra
