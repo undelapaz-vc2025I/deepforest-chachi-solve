@@ -50,3 +50,8 @@ Aplicar un modelo preentrenado de DeepForest para detectar árboles en imágenes
 - Un notebook (recomendado: `analisis_arboles.ipynb`) que documente el flujo completo.
 - El dataframe generado en CSV.
 - Visualizaciones correspondientes (pueden estar embebidas en el notebook).
+
+## **INTEGRANTES DE CHACHI SOLVE**
+- Farid Pedroza
+- Joan Rincon
+- Juan Guerra
